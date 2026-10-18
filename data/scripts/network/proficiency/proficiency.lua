@@ -51,7 +51,8 @@ local MAX_MODIFIED_SLOTS = 2
 local MAX_MODIFIER_RANK = 10
 local MIN_SHAPING_UNLOCKED_LEVELS = 3
 local FIRST_MODIFY_DUST_COST = 250
-local SECOND_MODIFY_DUST_COST = 1000
+-- The normally attainable Forge Dust limit is 325.
+local SECOND_MODIFY_DUST_COST = 325
 local RESHAPE_DUST_COST = 250
 local RESHAPE_OFFER_COUNT = 3
 local RESHAPE_OFFER_TTL_MS = 30000
@@ -1177,7 +1178,7 @@ local function getModifyDustCost(state)
 end
 
 local function getRefineDustCost(refineLevel)
-	return 125 + math.max(0, tonumber(refineLevel) or 0) * 75
+	return math.min(325, 125 + math.max(0, tonumber(refineLevel) or 0) * 75)
 end
 
 local function finishShapeChange(player, itemId)
