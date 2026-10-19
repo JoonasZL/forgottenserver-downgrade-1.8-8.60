@@ -255,9 +255,7 @@ function influencedDeath.onDeath(creature, corpse, killer, mostDamageKiller, las
         local credited = player:addForgeDust(dustAmount)
         if type(credited) == "number" and credited > 0 then
             player:sendTextMessage(MESSAGE_INFO_DESCR, string.format("You killed a Fiendish monster and received %d Dust!", credited))
-        elseif credited == 0 then
-            player:sendTextMessage(MESSAGE_INFO_DESCR, "You killed a Fiendish monster, but your Dust balance is full.")
-        else
+        elseif credited ~= 0 then
             print(string.format("[ForgeDust] Could not credit Fiendish reward to player %d.", player:getGuid()))
         end
 

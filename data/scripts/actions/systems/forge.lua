@@ -132,6 +132,10 @@ function Player:addForgeDust(amount)
     if new <= cur then return 0 end
     if self:setStorageValue(FORGE_STORAGE.dust, new) ~= true then return nil end
     self:sendForgeDustBalance()
+    if cur < limit and new >= limit then
+        self:sendTextMessage(MESSAGE_STATUS_CONSOLE_RED,
+            string.format("[Forge] Seu Dust atingiu o limite (%d/%d). Use-o na Forja ou na Proficiencia para continuar acumulando.", new, limit))
+    end
     return new - cur
 end
 
